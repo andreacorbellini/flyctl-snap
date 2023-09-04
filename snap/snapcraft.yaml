@@ -1,0 +1,28 @@
+name: andrea-flyctl
+base: core22
+version: '0.1.87'
+summary: Command line interface for fly.io
+description: |
+  This contains the official command interface client for fly.io, downloaded
+  from https://github.com/superfly/flyctl/releases
+license: Apache-2.0
+
+grade: stable
+confinement: strict
+architectures:
+  - amd64
+
+apps:
+  fly:
+    command: bin/fly
+    plugs:
+      - network
+      - network-bind
+
+parts:
+  fly:
+    source: https://github.com/superfly/flyctl/releases/download/v0.1.87/flyctl_0.1.87_Linux_x86_64.tar.gz
+    source-type: tar
+    plugin: dump
+    organize:
+      flyctl: bin/fly
